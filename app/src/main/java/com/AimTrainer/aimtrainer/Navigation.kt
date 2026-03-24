@@ -18,11 +18,12 @@ fun AppNavigation() {
             val grid = backStackEntry.arguments?.getString("grid")?.toInt() ?: 0
             GameScreen(name, timer, grid, navController)
         }
-        composable("result/{name}/{timer}/{score}") {backStackEntry ->
+        composable("result/{name}/{timer}/{grid}/{score}") {backStackEntry ->
             val name = backStackEntry.arguments?.getString("name") ?: ""
             val timer = backStackEntry.arguments?.getString("timer")?.toInt() ?: 0
+            val grid = backStackEntry.arguments?.getString("grid")?.toInt() ?: 0
             val score = backStackEntry.arguments?.getString("score")?.toInt() ?: 0
-            Result(name, timer, score)
+            Result(name, timer, grid,score,navController)
         }
     }
 }

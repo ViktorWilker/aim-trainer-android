@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -84,23 +85,21 @@ fun HomeScreen(navController: NavHostController) {
                 .padding(top = 20.dp, bottom = 30.dp, start = 45.dp, end = 45.dp)
                 .fillMaxWidth()
         )
-
+        Spacer(modifier = Modifier.height(25.dp))
         Text(
             modifier = Modifier
                 .align(Alignment.Start)
-                .padding(start = 20.dp),
+                .padding(start = 10.dp),
             text = "time",
             color = Color(0xFF7F77DD),
-            fontSize = 16.sp,
+            fontSize = 22.sp,
         )
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
+        Row(modifier = Modifier.height(120.dp)) {
             Button(
                 onClick = { timer.value = 15 },
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxSize(),
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = if (timer.value == 15) Color(0xFF7F77DD) else Color(0xFFEEEDFE),
@@ -111,7 +110,9 @@ fun HomeScreen(navController: NavHostController) {
             }
             Button(
                 onClick = { timer.value = 30 },
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxSize(),
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = if (timer.value == 30) Color(0xFF7F77DD) else Color(0xFFEEEDFE),
@@ -122,7 +123,9 @@ fun HomeScreen(navController: NavHostController) {
             }
             Button(
                 onClick = { timer.value = 60 },
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxSize(),
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = if (timer.value == 60) Color(0xFF7F77DD) else Color(0xFFEEEDFE),
@@ -132,20 +135,60 @@ fun HomeScreen(navController: NavHostController) {
                 Text("60s", fontSize = 16.sp)
             }
         }
-        Spacer(modifier = Modifier.height(25.dp))
-        Row() {
-            Button(onClick = {grid.value = 9}) {
+        Spacer(modifier = Modifier.height(50.dp))
+        Text(
+            modifier = Modifier
+                .align(Alignment.Start)
+                .padding(start = 10.dp),
+            text = "Grid",
+            color = Color(0xFF7F77DD),
+            fontSize = 22.sp,
+        )
+        Row(modifier = Modifier.height(120.dp)) {
+            Button(onClick = {grid.value = 9},
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxSize(),
+                shape = RoundedCornerShape(12.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = if (grid.value == 9) Color(0xFF7F77DD) else Color(0xFFEEEDFE),
+                    contentColor = if (grid.value == 9) Color(0xFFEEEDFE) else Color(0xFF534AB7)
+                )) {
                 Text(text = "3x3")
             }
-            Button(onClick = {grid.value = 16}) {
+
+            Button(onClick = {grid.value = 16},
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxSize(),
+                shape = RoundedCornerShape(12.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = if (grid.value == 16) Color(0xFF7F77DD) else Color(0xFFEEEDFE),
+                    contentColor = if (grid.value == 16) Color(0xFFEEEDFE) else Color(0xFF534AB7)
+                )) {
                 Text(text = "4x4")
             }
-            Button(onClick = {grid.value = 25}) {
+
+
+            Button(onClick = {grid.value = 25},
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxSize(),
+                shape = RoundedCornerShape(12.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = if (grid.value == 25) Color(0xFF7F77DD) else Color(0xFFEEEDFE),
+                    contentColor = if (grid.value == 25) Color(0xFFEEEDFE) else Color(0xFF534AB7)
+                )) {
                 Text(text = "5x5")
             }
         }
-        Spacer(modifier = Modifier.height(25.dp))
-        Button(onClick = {navController.navigate(getHomeDatas())}, enabled = canStart()) {
+        Spacer(modifier = Modifier.height(50.dp))
+        Button(
+            onClick = { navController.navigate(getHomeDatas()) },
+            enabled = canStart(),
+            modifier = Modifier.fillMaxWidth().height(52.dp),
+            contentPadding = PaddingValues(vertical = 14.dp)
+        ) {
             Text(text = "Start")
         }
     }
